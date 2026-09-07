@@ -23,6 +23,18 @@ Output:
 - Server-side rendering bundle
 - Static assets and images
 
+## Deploy to GitHub Pages (Live)
+
+**Live URL**: https://shreekantha3.github.io/ashirvada-kalyana-mantapa/
+
+The site is currently deployed to GitHub Pages using the  branch.
+
+### How it works
+-  pushes the built  directory to the  branch
+- GitHub Pages serves from the  branch
+
+---
+
 ## Deploy to Vercel (Recommended)
 
 ### Quick Deploy
