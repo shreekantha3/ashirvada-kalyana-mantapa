@@ -47,5 +47,5 @@ Thumbs.db
 
 # Worktree
 .claude/worktrees/
-EOF
-echo ".gitignore updated"gh-pages
+
+gh-pages
