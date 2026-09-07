@@ -11,21 +11,21 @@ export interface GalleryImage {
   height: number;
 }
 
+// Sample stock photos (Unsplash, free to use) — replace with real venue photos.
 export const galleryImages: GalleryImage[] = [
-  { id: 1, label: "Venue Exterior", src: "/images/venue-exterior.jpg", width: 800, height: 600 },
-  { id: 2, label: "Main Hall", src: "/images/main-hall.jpg", width: 800, height: 600 },
-  { id: 3, label: "Wedding Stage", src: "/images/stage.jpg", width: 800, height: 600 },
-  { id: 4, label: "Dining Area", src: "/images/dining.jpg", width: 800, height: 600 },
-  { id: 5, label: "Garden/Courtyard", src: "/images/garden.jpg", width: 800, height: 600 },
-  { id: 6, label: "Reception Hall", src: "/images/reception.jpg", width: 800, height: 600 },
-  { id: 7, label: "Prayer Hall", src: "/images/prayer.jpg", width: 800, height: 600 },
-  { id: 8, label: "Cocktail Area", src: "/images/cocktail.jpg", width: 800, height: 600 },
-  { id: 9, label: "Guest Lounge", src: "/images/lounge.jpg", width: 800, height: 600 },
-  // Sample stock photos (Unsplash, free to use) — replace with real venue photos.
-  { id: 10, label: "Grand Banquet Hall", src: "/images/banquet-hall.jpg", width: 1200, height: 775 },
-  { id: 11, label: "Festive Dining", src: "/images/festive-dining.jpg", width: 1200, height: 800 },
-  { id: 12, label: "Outdoor Ceremony", src: "/images/outdoor-ceremony.jpg", width: 1200, height: 800 },
-  { id: 13, label: "Wedding Details", src: "/images/wedding-details.jpg", width: 1200, height: 800 },
+  { id: 1, label: "Grand Banquet Hall", src: "/images/banquet-hall.jpg", width: 1200, height: 775 },
+  { id: 2, label: "Decorated Hall", src: "/images/decorated-hall.jpg", width: 1200, height: 801 },
+  { id: 3, label: "Wedding Arch", src: "/images/wedding-arch.jpg", width: 1200, height: 801 },
+  { id: 4, label: "Outdoor Ceremony", src: "/images/outdoor-ceremony.jpg", width: 1200, height: 800 },
+  { id: 5, label: "Garden Mandap Setup", src: "/images/garden-mandap.jpg", width: 1200, height: 801 },
+  { id: 6, label: "Festive Dining", src: "/images/festive-dining.jpg", width: 1200, height: 800 },
+  { id: 7, label: "Bridal Bouquet", src: "/images/bridal-bouquet.jpg", width: 1200, height: 800 },
+  { id: 8, label: "Wedding Details", src: "/images/wedding-details.jpg", width: 1200, height: 800 },
+  { id: 9, label: "Holding Hands", src: "/images/holding-hands.jpg", width: 1200, height: 800 },
+  { id: 10, label: "Happy Couple", src: "/images/happy-couple.jpg", width: 1200, height: 800 },
+  { id: 11, label: "Sunset Shoot", src: "/images/sunset-shoot.jpg", width: 1200, height: 800 },
+  { id: 12, label: "Balloon Send-off", src: "/images/balloon-sendoff.jpg", width: 1200, height: 800 },
+  { id: 13, label: "Festive Decor", src: "/images/festive-decor.jpg", width: 1200, height: 800 },
 ];
 
 export interface Testimonial {

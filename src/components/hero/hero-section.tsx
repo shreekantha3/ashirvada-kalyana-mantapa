@@ -12,7 +12,7 @@ export function HeroSection() {
       <div className="absolute inset-0" aria-hidden="true">
         <div className="w-full h-full bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900" />
         {/* Placeholder for hero image */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: `url(${withBasePath("/images/hero-placeholder.jpg")})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: `url(${withBasePath("/images/banquet-hall.jpg")})` }} />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/30" />
       </div>
 

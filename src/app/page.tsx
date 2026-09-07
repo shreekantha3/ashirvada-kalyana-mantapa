@@ -9,6 +9,7 @@ import { LocationSection } from "@/components/location/location-section";
 import { ContactSection } from "@/components/contact/contact-section";
 import { Footer } from "@/components/footer/footer";
 import { Header } from "@/components/navigation/header";
+import { WhatsAppFloat } from "@/components/contact/whatsapp-float";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }
