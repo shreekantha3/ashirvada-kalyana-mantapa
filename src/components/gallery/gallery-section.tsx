@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -13,6 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { galleryImages } from "@/lib/content";
+import { withBasePath } from "@/lib/site";
 
 export function GallerySection() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -64,8 +64,12 @@ export function GallerySection() {
                       className="relative block w-full overflow-hidden rounded-xl bg-muted cursor-pointer group text-left"
                       aria-label={`View larger photo: ${image.label}`}
                     >
-                      <Image
-                        src={image.src}
+                      {/* Plain <img> (not next/image): with `images.unoptimized`
+                          next/image drops the basePath prefix, breaking images
+                          on the GitHub Pages subpath. withBasePath() handles it. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={withBasePath(image.src)}
                         alt={image.label}
                         width={image.width}
                         height={image.height}
@@ -91,8 +95,9 @@ export function GallerySection() {
                     Larger view of {image.label} at Ashirvada Kalyana Mantapa.
                   </DialogDescription>
                   <div className="flex items-center justify-center">
-                    <Image
-                      src={image.src}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={withBasePath(image.src)}
                       alt={image.label}
                       width={image.width}
                       height={image.height}

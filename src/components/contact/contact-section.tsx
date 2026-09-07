@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, MapPin, Mail, RotateCcw } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +14,7 @@ import { siteConfig } from "@/lib/site";
 
 const CONTACT_ITEMS = [
   { icon: Phone, label: "Phone", value: siteConfig.phoneDisplay, href: siteConfig.phoneHref },
-  { icon: MessageCircle, label: "WhatsApp", value: siteConfig.phoneDisplay, href: siteConfig.whatsappHref },
+  { icon: WhatsAppIcon, label: "WhatsApp", value: siteConfig.phoneDisplay, href: siteConfig.whatsappHref },
   { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
   { icon: MapPin, label: "Location", value: siteConfig.address },
 ];
@@ -65,7 +66,7 @@ export function ContactSection() {
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+                  <WhatsAppIcon className="mr-2 h-5 w-5" />
                   WhatsApp Us
                 </a>
               </Button>
