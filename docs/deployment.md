@@ -1,94 +1,81 @@
 # Deployment Guide
 
-## Build Status
-- ✅ Next.js 16.3.4 build: **Passing**
-- ✅ TypeScript (tsc --noEmit): **No errors**
-- ✅ ESLint: **No errors, no warnings**
-- ✅ Static prerendering: **All routes generated**
-- ✅ Build output: **~99MB** (`.next/` directory)
-- ✅ Build ID: `jPOzV0LavHymf3bL0Rlqh`
+## ✅ Live Site
+**URL**: https://shreekantha3.github.io/ashirvada-kalyana-mantapa/
 
-## Prerequisites
-- Node.js >= 20.9.0 (tested on v22.22.3)
-- npm >= 10
-- 2GB+ free disk space for build output
+Status: **Online** - All 8 sections rendering correctly with static HTML.
 
-## Build
+## Deployment Architecture
+
+This is a **static site** deployed to GitHub Pages:
+- **Build**: `npm run build` generates static HTML in `out/` directory
+- **Deploy**: `peaceiris/actions-gh-pages` pushes `out/` → `gh-pages` branch
+- **Host**: GitHub Pages serves from `gh-pages` branch
+- **Build type**: Static HTML with pre-rendered content (no JS hydration required)
+
+## Configuration
+
+### `next.config.ts`
+```typescript
+const nextConfig: NextConfig = {
+  output: "export",        // Static HTML export
+  trailingSlash: true,     // Required for GitHub Pages
+  images: { unoptimized: true },  // No image optimization needed
+};
+```
+
+### `public/sitemap.xml` & `public/robots.txt`
+Static files replace dynamic `sitemap.ts` and `robots.ts` routes.
+
+## Auto-Deployment
+
+Every push to `main` branch triggers:
+1. **Next.js build** → `out/` directory with static HTML
+2. **GitHub Action** (`peaceiris/actions-gh-pages@v4`) → pushes to `gh-pages` branch
+3. **GitHub Pages** automatically serves from `gh-pages`
+
+## Build & Deploy Commands
+
+### Local Preview
 ```bash
 npm run build
+# Open out/index.html in browser
 ```
 
-Output:
-- Static HTML pages in `.next/`
-- Server-side rendering bundle
-- Static assets and images
-
-## Deploy to GitHub Pages (Live)
-
-**Live URL**: https://shreekantha3.github.io/ashirvada-kalyana-mantapa/
-
-The site is currently deployed to GitHub Pages using the  branch.
-
-### How it works
--  pushes the built  directory to the  branch
-- GitHub Pages serves from the  branch
-
----
-
-## Deploy to Vercel (Recommended)
-
-### Quick Deploy
-1. Push code to GitHub
-2. Import project in Vercel Dashboard
-3. Set environment variables:
-   - `NEXT_PUBLIC_BASE_URL`: Your domain
-4. Vercel auto-detects Next.js and deploys
-
-### CLI Deploy
+### Force Redeploy
 ```bash
-npm install -g vercel
-vercel
+gh workflow run deploy.yml --repo shreekantha3/ashirvada-kalyana-mantapa
 ```
 
-### Environment Variables for Production
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `NEXT_PUBLIC_BASE_URL` | Site origin | `https://ashirvada.example.com` |
-
-## Local Preview
+### Check Deployment Status
 ```bash
-npm run build && npm run start
+gh run list --repo shreekantha3/ashirvada-kalyana-mantapa
 ```
-Server runs on `http://localhost:3000`
 
-## Performance Notes
-- All routes are statically prerendered
-- Images are optimized by Next.js
-- Font loading uses `font-display: swap`
-- Total build time: ~5 seconds (Turbopack)
-- Bundle includes: React 19, Next.js, Framer Motion, Tailwind CSS v4, shadcn/ui
-
-## SEO Status
-- ✅ Dynamic sitemap generated (`/sitemap.xml`)
-- ✅ Robots.txt configured (`/robots.txt`)
-- ✅ Open Graph meta tags on all pages
-- ✅ Twitter card meta tags
-- ✅ Proper heading hierarchy
-- ✅ Semantic HTML structure
-- ✅ Viewport meta tag for mobile
-- ✅ Language attribute on HTML element
-
-## Accessibility Status
-- ✅ WCAG 2.2 AA target
-- ✅ `prefers-reduced-motion` media query support
-- ✅ Focus-visible ring styles
-- ✅ Semantic HTML landmarks (`<main>`, `<nav>`, `<footer>`, `<section>`)
-- ✅ ARIA labels on icon buttons
-- ✅ Alt text on decorative images
+## Verified Site Content
+- ✅ Hero section with venue imagery
+- ✅ Trust section with location info
+- ✅ About section (4 features)
+- ✅ Venue/Facilities section (6 cards)
+- ✅ Gallery section (9 images)
+- ✅ Events section (5 categories)
+- ✅ Location section (map + address)
+- ✅ Contact section (form + phone/WhatsApp)
+- ✅ Footer with social links
+- ✅ All meta tags (SEO, OG, Twitter)
+- ✅ Responsive viewport
+- ✅ 99KB total page size
 
 ## Known Limitations
 - Contact form is UI-only (no backend) — displays toast notification with phone/WhatsApp/email fallbacks
-- Gallery images are CSS gradient placeholders — replace with real photos
-- Google Maps uses static placeholder — embed actual map with API key
-- Business details (phone, email, address) are placeholder values marked with asterisks in docs
-- No analytics or tracking implemented (add post-deployment)
+- Gallery images are CSS gradient placeholders — replace with real photos post-deployment
+- Google Maps uses static placeholder — integrate with API key after deployment
+- Business details (phone, email, address) are placeholder values marked with `*` in docs
+
+## Future: Vercel Deployment (Recommended)
+For SSR/faster builds, switch to Vercel:
+```bash
+# Remove output: 'export' from next.config.ts
+# Connect repo in Vercel Dashboard
+# Auto-deploys on push to main
+```
