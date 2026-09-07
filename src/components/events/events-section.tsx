@@ -18,7 +18,7 @@ export function EventsSection() {
     <section id="events" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -41,7 +41,7 @@ export function EventsSection() {
           {events.map((event, i) => (
             <motion.div
               key={event.title}
-              initial={false}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
@@ -64,7 +64,7 @@ export function EventsSection() {
         </div>
 
         <motion.div
-          initial={false}
+          initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.7, duration: 0.6 }}

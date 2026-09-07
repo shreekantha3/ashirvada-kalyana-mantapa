@@ -10,7 +10,7 @@ export function LocationSection() {
     <section id="location" className="py-16 md:py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -30,27 +30,27 @@ export function LocationSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Map Placeholder */}
+          {/* Map */}
           <motion.div
-            initial={false}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8 }}
-            className="rounded-2xl overflow-hidden"
+            className="rounded-2xl overflow-hidden border border-border"
           >
-            <div className="aspect-video bg-gradient-to-br from-amber-100 to-orange-100 dark:from-neutral-700 dark:to-neutral-800 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-16 w-16 text-primary/40 mx-auto mb-4" />
-                <p className="text-muted-foreground text-sm">
-                  Google Maps would appear here with an API key
-                </p>
-              </div>
-            </div>
+            <iframe
+              title="Map — Ashirvada Kalyana Mantapa, Sindagi"
+              src="https://www.google.com/maps?q=16.9196207,76.2185894&output=embed"
+              className="w-full aspect-video border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </motion.div>
 
           {/* Address & Directions */}
           <motion.div
-            initial={false}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.2 }}

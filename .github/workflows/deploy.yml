@@ -34,6 +34,10 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://shreekantha3.github.io/ashirvada-kalyana-mantapa
+          # Project site is served from a subpath, so assets must be
+          # prefixed or JS/CSS/images 404 on the live site.
+          NEXT_BASE_PATH: /ashirvada-kalyana-mantapa
+          NEXT_PUBLIC_BASE_PATH: /ashirvada-kalyana-mantapa
       
       - name: Deploy with git
         run: |

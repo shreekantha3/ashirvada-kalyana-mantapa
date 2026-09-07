@@ -1,6 +1,6 @@
 "use client";
 
-import { Star, MapPin } from "lucide-react";
+import { Star, MapPin, BadgeCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +9,7 @@ export function TrustSection() {
     <section className="py-16 md:py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -52,7 +52,7 @@ export function TrustSection() {
           {/* Years of Excellence */}
           <div className="flex flex-col items-center md:items-start gap-3 p-6">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-              <span className="font-heading font-bold text-primary">✓</span>
+              <BadgeCheck className="h-5 w-5 text-primary" aria-hidden="true" />
             </div>
             <span className="text-lg font-heading font-semibold text-foreground">Trusted Venue</span>
             <span className="text-sm text-muted-foreground">For Weddings & Celebrations</span>

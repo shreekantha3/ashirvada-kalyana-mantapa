@@ -1,22 +1,18 @@
 "use client";
 
-import { createContext, useContext } from "react";
-import { Toast, ToastAction } from "@/components/ui/toast";
-import { ToastProvider } from "@/components/ui/toast";
-import { ToastViewport } from "@/components/ui/toast";
+import { toast as toastManager, Toaster } from "@/components/ui/toast";
 
-const ToastContext = createContext<{
-  toast: (props: { title: string; description?: string; variant?: "default" | "destructive" }) => void;
-} | null>(null);
+export interface ToastProps {
+  title: string;
+  description?: string;
+}
+
+export function toast({ title, description }: ToastProps) {
+  toastManager.add({ title, description });
+}
 
 export function useToast() {
-  return useContext(ToastContext) || {
-    toast: () => {},
-  };
+  return { toast };
 }
 
-export { ToastProvider, Toast, ToastAction, ToastViewport, ToastContext };
-
-export function toast(props: { title: string; description?: string; variant?: "default" | "destructive" }) {
-  console.log("Toast:", props);
-}
+export { Toaster };

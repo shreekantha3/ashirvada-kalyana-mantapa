@@ -1,0 +1,3 @@
+# Prevent GitHub Pages from running Jekyll, which would ignore
+# all underscore-prefixed paths (notably /_next/* JS and CSS).
+# Without this file the deployed site loads with no styles/scripts.

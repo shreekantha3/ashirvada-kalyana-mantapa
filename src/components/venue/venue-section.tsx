@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, Theater, Utensils, ParkingSquare, Users, Heart } from "lucide-react";
+import { Building2, Theater, Utensils, SquareParking, Users, Heart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -9,7 +9,7 @@ const facilities = [
   { icon: Building2, title: "Spacious Function Hall", desc: "Elegantly designed halls accommodating hundreds of guests. Perfect for weddings and receptions." },
   { icon: Theater, title: "Wedding Stage", desc: "Professional-grade stage with lighting and sound setup for ceremonies and performances." },
   { icon: Utensils, title: "Dining Area", desc: "Well-appointed dining space for intimate gatherings and grand celebrations." },
-  { icon: ParkingSquare, title: "Ample Parking", desc: "Dedicated parking facilities for guests and wedding parties." },
+  { icon: SquareParking, title: "Ample Parking", desc: "Dedicated parking facilities for guests and wedding parties." },
   { icon: Users, title: "Guest Facilities", desc: "Comfortable waiting areas and guest amenities for convenience." },
   { icon: Heart, title: "Decoration-Friendly", desc: "Versatile spaces ready for your personal décor vision and floral arrangements." },
 ];
@@ -19,7 +19,7 @@ export function VenueSection() {
     <section id="venue" className="py-16 md:py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -42,7 +42,7 @@ export function VenueSection() {
           {facilities.map((facility, i) => (
             <motion.div
               key={facility.title}
-              initial={false}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.08, duration: 0.6 }}
@@ -65,7 +65,7 @@ export function VenueSection() {
         </div>
 
         <motion.div
-          initial={false}
+          initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.5, duration: 0.6 }}

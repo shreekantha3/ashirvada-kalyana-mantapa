@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { NavLink } from "./nav-link";
 import { Button } from "@/components/ui/button";
@@ -20,13 +20,16 @@ export function MobileMenu() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
-        <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation menu">
-          <Menu className="h-6 w-6" />
-        </Button>
-      </SheetTrigger>
+      <SheetTrigger
+        render={
+          <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation menu">
+            <Menu className="h-6 w-6" />
+          </Button>
+        }
+      />
       <SheetContent side="right" className="w-[280px]">
-        <nav className="flex flex-col gap-6 mt-8">
+        <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+        <nav className="flex flex-col gap-6 mt-8" aria-label="Mobile">
           {links.map((link) => (
             <NavLink
               key={link.href}
@@ -37,7 +40,7 @@ export function MobileMenu() {
               {link.label}
             </NavLink>
           ))}
-          <Button className="mt-4" asChild>
+          <Button className="mt-4" asChild onClick={() => setOpen(false)}>
             <a href="#contact">Enquire Now</a>
           </Button>
         </nav>

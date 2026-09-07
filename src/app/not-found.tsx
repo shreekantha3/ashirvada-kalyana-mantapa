@@ -9,21 +9,22 @@ export default function NotFound() {
     <main className="flex-1 flex items-center justify-center min-h-screen">
       <div className="text-center px-4">
         <motion.h1
-          initial={false}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className="font-heading text-6xl font-bold text-foreground mb-4"
         >
           404
         </motion.h1>
         <motion.p
-          initial={false}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
           className="text-lg text-muted-foreground mb-8"
         >
           The page you&rsquo;re looking for doesn&rsquo;t exist.
         </motion.p>
-        <motion.div initial={false} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.5 }}>
           <Button asChild>
             <Link href="/">Go Home</Link>
           </Button>

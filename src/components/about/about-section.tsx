@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Wine, Flower2, Music } from "lucide-react";
+import { Heart, HandHeart, Flower2, Music } from "lucide-react";
 
 const features = [
   { icon: Heart, label: "Elegant Atmosphere", desc: "Beautifully designed spaces for your most cherished celebrations." },
-  { icon: Wine, label: "Hospitality First", desc: "Dedicated team ensuring every detail of your event is perfect." },
+  { icon: HandHeart, label: "Hospitality First", desc: "Dedicated team ensuring every detail of your event is perfect." },
   { icon: Flower2, label: "Versatile Spaces", desc: "Multiple halls and outdoor areas for every type of celebration." },
   { icon: Music, label: "Prime Location", desc: "Conveniently located in Sindagi, Karnataka with easy access." },
 ];
@@ -15,7 +15,7 @@ export function AboutSection() {
     <section id="about" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -39,7 +39,7 @@ export function AboutSection() {
           {features.map((feature, i) => (
             <motion.div
               key={feature.label}
-              initial={false}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}

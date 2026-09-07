@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, MapPin, Mail } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Mail, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,11 +9,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
+import { siteConfig } from "@/lib/site";
+
+const CONTACT_ITEMS = [
+  { icon: Phone, label: "Phone", value: siteConfig.phoneDisplay, href: siteConfig.phoneHref },
+  { icon: MessageCircle, label: "WhatsApp", value: siteConfig.phoneDisplay, href: siteConfig.whatsappHref },
+  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+  { icon: MapPin, label: "Location", value: siteConfig.address },
+];
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     toast({
@@ -28,7 +36,7 @@ export function ContactSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-              <MessageCircle className="h-8 w-8 text-primary" />
+              <MessageCircle className="h-8 w-8 text-primary" aria-hidden="true" />
             </div>
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-4">
               Thank You!
@@ -38,16 +46,20 @@ export function ContactSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <a href="tel:+91XXXXXXXXXX">
-                  <Phone className="mr-2 h-5 w-5" />
+                <a href={siteConfig.phoneHref}>
+                  <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
                   Call Now
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" />
+                <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
                   WhatsApp Us
                 </a>
+              </Button>
+              <Button variant="ghost" size="lg" onClick={() => setSubmitted(false)}>
+                <RotateCcw className="mr-2 h-5 w-5" aria-hidden="true" />
+                Send another enquiry
               </Button>
             </div>
           </div>
@@ -60,7 +72,7 @@ export function ContactSection() {
     <section id="contact" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
@@ -83,26 +95,27 @@ export function ContactSection() {
             <h3 className="font-heading text-xl font-semibold text-foreground mb-6">
               Get in Touch
             </h3>
-            {[
-              { icon: Phone, label: "Phone", value: "+91-XXXXXXXXXX" },
-              { icon: MessageCircle, label: "WhatsApp", value: "+91-XXXXXXXXXX" },
-              { icon: Mail, label: "Email", value: "contact@ashirvada.example.com" },
-              { icon: MapPin, label: "Location", value: "Sindagi, Karnataka, India" },
-            ].map((item) => (
+            {CONTACT_ITEMS.map((item) => (
               <motion.div
                 key={item.label}
-                initial={false}
+                initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4 }}
                 className="flex items-center gap-4"
               >
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <item.icon className="h-5 w-5 text-primary" />
+                  <item.icon className="h-5 w-5 text-primary" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{item.label}</p>
-                  <p className="font-medium text-foreground">{item.value}</p>
+                  {item.href ? (
+                    <a href={item.href} className="font-medium text-foreground hover:text-primary transition-colors">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="font-medium text-foreground">{item.value}</p>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -115,29 +128,39 @@ export function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" placeholder="Your name" required />
+                    <Input id="name" name="name" placeholder="Your name" autoComplete="name" required />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" required />
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" autoComplete="tel" required />
                   </div>
                 </div>
                 <div>
-                  <Label htmlFor="event">Event Type</Label>
-                  <select id="event" className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
-                    <option>Wedding</option>
-                    <option>Reception</option>
-                    <option>Engagement</option>
-                    <option>Family Function</option>
-                    <option>Other</option>
-                  </select>
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" name="email" type="email" placeholder="your@email.com" autoComplete="email" required />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="event">Event Type</Label>
+                    <select id="event" name="event" className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
+                      <option>Wedding</option>
+                      <option>Reception</option>
+                      <option>Engagement</option>
+                      <option>Family Function</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <Label htmlFor="date">Preferred Date</Label>
+                    <Input id="date" name="date" type="date" />
+                  </div>
                 </div>
                 <div>
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Tell us about your event..." className="min-h-[120px]" required />
+                  <Textarea id="message" name="message" placeholder="Tell us about your event — expected guests, dates, requirements…" className="min-h-[120px]" required />
                 </div>
                 <Button size="lg" className="w-full" type="submit">
-                  <MessageCircle className="mr-2 h-5 w-5" />
+                  <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
                   Send Enquiry
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
