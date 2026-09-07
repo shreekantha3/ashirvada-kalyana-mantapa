@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Premier wedding and function venue in Sindagi, Karnataka. Beautifully designed spaces for your most memorable celebrations.",
   keywords: ["Kalyan Mantapa Sindagi", "Wedding Hall Sindagi Karnataka", "Function Hall Sindagi", "Marriage Hall near Sindagi", "Wedding Venue Karnataka"],
   authors: [{ name: "Ashirvada Kalyana Mantapa" }],
-  metadataBase: new URL("https://ashirvada.example.com"),
+  metadataBase: new URL("https://shreekantha3.github.io/ashirvada-kalyana-mantapa"),
   openGraph: { type: "website", locale: "en_IN", title: "Ashirvada Kalyana Mantapa", description: "Premier wedding and function venue in Sindagi, Karnataka.", siteName: "Ashirvada Kalyana Mantapa" },
   twitter: { card: "summary_large_image", title: "Ashirvada Kalyana Mantapa", description: "Premier wedding and function venue in Sindagi, Karnataka." },
   robots: { index: true, follow: true },
