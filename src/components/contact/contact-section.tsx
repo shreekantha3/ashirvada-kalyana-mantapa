@@ -20,15 +20,27 @@ const CONTACT_ITEMS = [
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [enquiry, setEnquiry] = useState({ name: "", event: "Wedding", date: "" });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    setEnquiry({
+      name: String(data.get("name") ?? ""),
+      event: String(data.get("event") ?? "Wedding"),
+      date: String(data.get("date") ?? ""),
+    });
     setSubmitted(true);
     toast({
       title: "Thank you!",
       description: "This is a demo form. For real enquiries, please call or WhatsApp us.",
     });
   };
+
+  const whatsappMessage = encodeURIComponent(
+    `Hello ${siteConfig.shortName}! I'm ${enquiry.name || "a guest"}. I'm interested in booking for a ${enquiry.event}${enquiry.date ? ` on ${enquiry.date}` : ""}. Please share availability and pricing. (Demo enquiry from the website)`
+  );
+  const whatsappHref = `${siteConfig.whatsappHref}?text=${whatsappMessage}`;
 
   if (submitted) {
     return (
@@ -52,7 +64,7 @@ export function ContactSection() {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
                   WhatsApp Us
                 </a>
@@ -163,6 +175,13 @@ export function ContactSection() {
                   <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
                   Send Enquiry
                 </Button>
+                <label className="flex items-start gap-2 text-xs text-muted-foreground cursor-pointer">
+                  <input type="checkbox" required className="mt-0.5 accent-primary" />
+                  <span>
+                    I agree to be contacted about my enquiry via phone, WhatsApp, or email.
+                    This is a demo form — no details are stored or sent anywhere.
+                  </span>
+                </label>
                 <p className="text-xs text-muted-foreground text-center">
                   This is a demo form. For real enquiries, please call or WhatsApp.
                 </p>

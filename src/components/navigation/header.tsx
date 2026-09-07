@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "#venue", label: "Venue" },
   { href: "#gallery", label: "Gallery" },
   { href: "#events", label: "Events" },
+  { href: "#testimonials", label: "Reviews" },
   { href: "#location", label: "Location" },
   { href: "#contact", label: "Contact" },
 ];

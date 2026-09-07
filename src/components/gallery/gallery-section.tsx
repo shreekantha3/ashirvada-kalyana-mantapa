@@ -12,18 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-const galleryImages = [
-  { id: 1, label: "Venue Exterior", src: "/images/venue-exterior.jpg" },
-  { id: 2, label: "Main Hall", src: "/images/main-hall.jpg" },
-  { id: 3, label: "Wedding Stage", src: "/images/stage.jpg" },
-  { id: 4, label: "Dining Area", src: "/images/dining.jpg" },
-  { id: 5, label: "Garden/Courtyard", src: "/images/garden.jpg" },
-  { id: 6, label: "Reception Hall", src: "/images/reception.jpg" },
-  { id: 7, label: "Prayer Hall", src: "/images/prayer.jpg" },
-  { id: 8, label: "Cocktail Area", src: "/images/cocktail.jpg" },
-  { id: 9, label: "Guest Lounge", src: "/images/lounge.jpg" },
-];
+import { galleryImages } from "@/lib/content";
 
 export function GallerySection() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -49,6 +38,7 @@ export function GallerySection() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A glimpse of the beautiful spaces and celebrations hosted at Ashirvada Kalyana Mantapa.
+            Sample photos shown — real venue photos coming soon.
           </p>
         </motion.div>
 
@@ -77,8 +67,8 @@ export function GallerySection() {
                       <Image
                         src={image.src}
                         alt={image.label}
-                        width={800}
-                        height={600}
+                        width={image.width}
+                        height={image.height}
                         loading="lazy"
                         className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105"
                       />
@@ -104,8 +94,8 @@ export function GallerySection() {
                     <Image
                       src={image.src}
                       alt={image.label}
-                      width={1200}
-                      height={800}
+                      width={image.width}
+                      height={image.height}
                       className="w-full max-h-[70vh] object-contain rounded-lg bg-muted"
                     />
                   </div>

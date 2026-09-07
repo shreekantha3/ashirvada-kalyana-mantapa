@@ -65,3 +65,16 @@
 - **Filename**: `/public/favicon.ico`
 - **Temporary**: Yes
 - **Replacement**: Client should provide branded favicon
+
+## Sample Gallery Photos (demo)
+Added as clearly-labelled SAMPLE data. Replace with real venue photos before production.
+
+| File | Shows | Source |
+|---|---|---|
+| `/public/images/banquet-hall.jpg` | Grand banquet hall with chandeliers | Unsplash (free licence) — photo-1519167758481-83f550bb49b3 |
+| `/public/images/festive-dining.jpg` | Decorated banquet dining table | Unsplash (free licence) — photo-1519225421980-715cb0215aed |
+| `/public/images/outdoor-ceremony.jpg` | Decorated outdoor ceremony chairs | Unsplash (free licence) — photo-1522673607200-164d1b6ce486 |
+| `/public/images/wedding-details.jpg` | Gold wedding rings close-up | Unsplash (free licence) — photo-1606800052052-a08af7148866 |
+
+To replace: drop real photos into `public/images/` (max ~200KB each, JPG/WebP)
+and update captions in `src/lib/content.ts` — no code changes needed.
